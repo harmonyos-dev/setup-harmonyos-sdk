@@ -3,7 +3,8 @@ const os = require("node:os");
 const zip = require("adm-zip");
 
 osmap = {
-	"darwin": "mac", "linux": "linux",
+	darwin: "mac",
+	linux: "linux",
 };
 
 const filenamePrefix = "commandline-tools-";
@@ -12,7 +13,9 @@ const filenameSuffix = ".zip";
 async function run() {
 	core.info("Downloading HarmonyOS SDK...");
 
-	const meta = await fetch("https://api.github.com/repos/harmonyos-dev/hos-sdk/releases/latest").then((res) => res.json());
+	const meta = await fetch(
+		"https://api.github.com/repos/harmonyos-dev/hos-sdk/releases/latest",
+	).then((res) => res.json());
 	const assets = meta.assets;
 	const os = osmap[os.platform()];
 	const version = core.getInput("version");
@@ -22,7 +25,10 @@ async function run() {
 		return;
 	}
 
-	const asset = assets.find((asset) => asset.name === `${filenamePrefix}${os}-${version}${filenameSuffix}`);
+	const asset = assets.find(
+		(asset) =>
+			asset.name === `${filenamePrefix}${os}-${version}${filenameSuffix}`,
+	);
 	if (!asset) {
 		core.setFailed(`No asset found for ${os}-${version}`);
 		return;
@@ -44,8 +50,8 @@ async function run() {
 	core.info("SDK downloaded and extracted to /harmonyos-sdk");
 
 	core.setOutput("sdk-path", "/harmonyos-sdk");
-	core.exportVariable('HOS_SDK_HOME', '/harmonyos-sdk/hwsdk');
-	core.addPath('/harmonyos-sdk/hwsdk/bin')
+	core.exportVariable("HOS_SDK_HOME", "/harmonyos-sdk/hwsdk");
+	core.addPath("/harmonyos-sdk/hwsdk/bin");
 }
 
 module.exports = {
