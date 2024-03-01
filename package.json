@@ -1,21 +1,22 @@
 {
-  "name": "javascript-action",
+  "name": "@harmonyos-dev/setup-harmonyos-sdk",
   "description": "GitHub Actions JavaScript Template",
   "version": "0.0.0",
   "author": "",
   "private": true,
-  "homepage": "https://github.com/actions/javascript-action#readme",
+  "homepage": "https://github.com/harmonyos-dev/setup-harmonyos-sdk",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-action.git"
+    "url": "git+https://github.com/harmonyos-dev/setup-harmonyos-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/javascript-action/issues"
+    "url": "https://github.com/harmonyos-dev/setup-harmonyos-sdk/issues"
   },
   "keywords": [
     "GitHub",
     "Actions",
-    "JavaScript"
+    "HarmonyOS",
+    "SDK"
   ],
   "exports": {
     ".": "./dist/index.js"
