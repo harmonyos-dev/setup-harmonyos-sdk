@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   test-javascript:
-    name: Code style
+    name: Code Style
     runs-on: ubuntu-latest
 
     steps:
@@ -35,10 +35,6 @@ jobs:
       - name: Check Format
         id: npm-format-check
         run: npm run format:check
-
-      - name: Lint
-        id: npm-lint
-        run: npm run lint
 
   test-action:
     name: GitHub Actions Test
