@@ -1,7 +1,7 @@
 {
   "name": "@harmonyos-dev/setup-harmonyos-sdk",
   "description": "Setup Harmony HAP build environment",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "author": "harmonyos-dev authors",
   "private": true,
   "homepage": "https://github.com/harmonyos-dev/setup-harmonyos-sdk",

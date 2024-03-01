@@ -23,6 +23,6 @@ steps:
   - name: Run my Action
     id: run-action
     uses: actions/setup-harmonyos-sdk@v1 # Commit with the `v1` tag
-    with:
-      milliseconds: 1000
+    # with:
+    #   version: '2.0.0.2' # 可选，不填默认是最新版本 2.0.0.2
 ```
