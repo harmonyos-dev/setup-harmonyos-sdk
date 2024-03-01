@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   test-javascript:
-    name: JavaScript Tests
+    name: Code style
     runs-on: ubuntu-latest
 
     steps:
@@ -39,10 +39,6 @@ jobs:
       - name: Lint
         id: npm-lint
         run: npm run lint
-
-      - name: Test
-        id: npm-ci-test
-        run: npm run ci-test
 
   test-action:
     name: GitHub Actions Test

@@ -5609,10 +5609,7 @@ async function run() {
 		return;
 	}
 
-	/**
-	 * @type {Buffer}
-	 */
-	const zipBuffer = await response.buffer();
+	const zipBuffer = await response.arrayBuffer();
 	zip(zipBuffer).extractAllTo("/harmonyos-sdk", true, true);
 	core.info("SDK downloaded and extracted to /harmonyos-sdk");
 
