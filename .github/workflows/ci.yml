@@ -55,5 +55,5 @@ jobs:
           echo "${{ steps.test-action.outputs.sdk-path }}"
           echo "PATH: $PATH"
           
-          ls -l /harmonyos-sdk/hwsdk/bin
+          ls -l /harmonyos-sdk/
           ls -l /harmonyos-sdk/sdkmanager/bin
