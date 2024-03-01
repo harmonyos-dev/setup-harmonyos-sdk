@@ -14,7 +14,9 @@ inputs:
 #    default: '1000'
 
 # Define your outputs here.
-#outputs:
+outputs:
+  sdk-path:
+    description: 'The path of installed sdk'
 #  time:
 #    description: 'Your output description here'
 
