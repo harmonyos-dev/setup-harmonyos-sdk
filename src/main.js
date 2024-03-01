@@ -43,7 +43,7 @@ async function run() {
 	}
 
 	const zipBuffer = await response.arrayBuffer();
-	zip(zipBuffer).extractAllTo("/harmonyos-sdk", true, true);
+	zip(Buffer.from(zipBuffer)).extractAllTo("/harmonyos-sdk", true, true);
 	core.info("SDK downloaded and extracted to /harmonyos-sdk");
 
 	core.setOutput("sdk-path", "/harmonyos-sdk");
