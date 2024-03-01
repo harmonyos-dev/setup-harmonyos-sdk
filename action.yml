@@ -1,6 +1,6 @@
-name: "@harmonyos-dev/setup-harmonyos-sdk"
-description: "Setup Harmony HAP build environment"
-author: "HarmonyOS Dev Authors"
+name: "Setup HarmonyOS SDK"
+description: "Set up a specific version of the HarmonyOS SDK and add the command-line tools to the PATH"
+author: "HarmonyOS Dev"
 
 # Define your inputs here.
 inputs:
