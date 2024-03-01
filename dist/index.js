@@ -5584,25 +5584,25 @@ async function run() {
 		"https://api.github.com/repos/harmonyos-dev/hos-sdk/releases/latest",
 	).then((res) => res.json());
 	const assets = meta.assets;
-	const os = osmap[os.platform()];
+	const mappedOS = osmap[os.platform()];
 	const version = core.getInput("version");
 
-	if (!os) {
+	if (!mappedOS) {
 		core.setFailed("Unsupported OS: " + os.platform());
 		return;
 	}
 
 	const asset = assets.find(
 		(asset) =>
-			asset.name === `${filenamePrefix}${os}-${version}${filenameSuffix}`,
+			asset.name === `${filenamePrefix}${mappedOS}-${version}${filenameSuffix}`,
 	);
 	if (!asset) {
-		core.setFailed(`No asset found for ${os}-${version}`);
+		core.setFailed(`No asset found for ${mappedOS}-${version}`);
 		return;
 	}
 
 	const url = asset.browser_download_url;
-	core.info(`Downloading SDK-${os}-${version} from ${url}...`);
+	core.info(`Downloading SDK-${mappedOS}-${version} from ${url}...`);
 	const response = await fetch(url);
 	if (!response.ok) {
 		core.setFailed(`Failed to download SDK: ${response.statusText}`);
