@@ -1,6 +1,6 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: "@harmonyos-dev/setup-harmonyos-sdk"
+description: "Setup Harmony HAP build environment"
+author: "HarmonyOS Dev Authors"
 
 # Define your inputs here.
 inputs:
@@ -8,17 +8,11 @@ inputs:
     description: 'The version of the sdk to setup'
     required: false
     default: 2.0.0.2
-#  milliseconds:
-#    description: 'Your input description here'
-#    required: true
-#    default: '1000'
 
 # Define your outputs here.
 outputs:
   sdk-path:
     description: 'The path of installed sdk'
-#  time:
-#    description: 'Your output description here'
 
 runs:
   using: node20
