@@ -1,30 +1,53 @@
-const core = require('@actions/core')
-const { wait } = require('./wait')
+const core = require("@actions/core");
+const os = require("node:os");
+const zip = require("adm-zip");
 
-/**
- * The main function for the action.
- * @returns {Promise<void>} Resolves when the action is complete.
- */
+osmap = {
+	"darwin": "mac", "linux": "linux",
+};
+
+const filenamePrefix = "commandline-tools-";
+const filenameSuffix = ".zip";
+
 async function run() {
-  try {
-    const ms = core.getInput('milliseconds', { required: true })
+	core.info("Downloading HarmonyOS SDK...");
 
-    // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
+	const meta = await fetch("https://api.github.com/repos/harmonyos-dev/hos-sdk/releases/latest").then((res) => res.json());
+	const assets = meta.assets;
+	const os = osmap[os.platform()];
+	const version = core.getInput("version");
 
-    // Log the current timestamp, wait, then log the new timestamp
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+	if (!os) {
+		core.setFailed("Unsupported OS: " + os.platform());
+		return;
+	}
 
-    // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
-  } catch (error) {
-    // Fail the workflow run if an error occurs
-    core.setFailed(error.message)
-  }
+	const asset = assets.find((asset) => asset.name === `${filenamePrefix}${os}-${version}${filenameSuffix}`);
+	if (!asset) {
+		core.setFailed(`No asset found for ${os}-${version}`);
+		return;
+	}
+
+	const url = asset.browser_download_url;
+	core.info(`Downloading SDK-${os}-${version} from ${url}...`);
+	const response = await fetch(url);
+	if (!response.ok) {
+		core.setFailed(`Failed to download SDK: ${response.statusText}`);
+		return;
+	}
+
+	/**
+	 * @type {Buffer}
+	 */
+	const zipBuffer = await response.buffer();
+	zip(zipBuffer).extractAllTo("/harmonyos-sdk", true, true);
+	core.info("SDK downloaded and extracted to /harmonyos-sdk");
+
+	core.setOutput("sdk-path", "/harmonyos-sdk");
+	core.exportVariable('HOS_SDK_HOME', '/harmonyos-sdk/hwsdk');
+	core.addPath('/harmonyos-sdk/hwsdk/bin')
 }
 
 module.exports = {
-  run
-}
+	run,
+};
