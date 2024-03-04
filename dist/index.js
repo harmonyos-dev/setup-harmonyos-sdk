@@ -5567,6 +5567,7 @@ exports["default"] = _default;
 
 const core = __nccwpck_require__(2186);
 const os = __nccwpck_require__(612);
+const path = __nccwpck_require__(9411);
 const zip = __nccwpck_require__(6761);
 
 osmap = {
@@ -5576,7 +5577,7 @@ osmap = {
 
 const filenamePrefix = "commandline-tools-";
 const filenameSuffix = ".zip";
-const sdkRoot = "~/harmonyos-sdk";
+const sdkRoot = path.join(os.homedir(), "harmonyos-sdk");
 
 async function run() {
 	core.info("Downloading HarmonyOS SDK...");
@@ -5695,6 +5696,14 @@ module.exports = require("net");
 
 "use strict";
 module.exports = require("node:os");
+
+/***/ }),
+
+/***/ 9411:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:path");
 
 /***/ }),
 

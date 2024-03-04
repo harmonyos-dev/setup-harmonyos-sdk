@@ -1,5 +1,6 @@
 const core = require("@actions/core");
 const os = require("node:os");
+const path = require("node:path");
 const zip = require("adm-zip");
 
 osmap = {
@@ -9,7 +10,7 @@ osmap = {
 
 const filenamePrefix = "commandline-tools-";
 const filenameSuffix = ".zip";
-const sdkRoot = "~/harmonyos-sdk";
+const sdkRoot = path.join(os.homedir(), "harmonyos-sdk");
 
 async function run() {
 	core.info("Downloading HarmonyOS SDK...");
