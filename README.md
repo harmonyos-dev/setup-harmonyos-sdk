@@ -7,8 +7,6 @@
 
 This action requires java 17 or above as sdkmgr from HarmonyOS SDK requires java 17 or above.
 
-```yaml
-
 After testing, you can create version tag(s) that developers can use to
 reference different stable versions of your action. For more information, see
 [Versioning](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
