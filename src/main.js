@@ -11,6 +11,8 @@ osmap = {
 const filenamePrefix = "commandline-tools-";
 const filenameSuffix = ".zip";
 const sdkRoot = path.join(os.homedir(), "harmonyos-sdk");
+const sdkHome = path.join(sdkRoot, "command-line-tools");
+const sdkBin = path.join(sdkHome, "bin");
 
 async function run() {
 	core.info("Downloading HarmonyOS SDK...");
@@ -48,9 +50,9 @@ async function run() {
 	zip(Buffer.from(zipBuffer)).extractAllTo(sdkRoot, true, true);
 	core.info("SDK downloaded and extracted to " + sdkRoot);
 
-	core.setOutput("sdk-path", sdkRoot);
-	core.exportVariable("HOS_SDK_HOME", `${sdkRoot}/hwsdk`);
-	core.addPath(`${sdkRoot}/hwsdk/bin`);
+	core.setOutput("sdk-path", sdkHome);
+	core.exportVariable("HOS_SDK_HOME", sdkHome);
+	core.addPath(sdkBin);
 }
 
 module.exports = {
