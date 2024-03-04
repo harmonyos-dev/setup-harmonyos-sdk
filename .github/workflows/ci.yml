@@ -54,7 +54,6 @@ jobs:
         run: |
           echo "${{ steps.test-action.outputs.sdk-path }}"
           echo "PATH: $PATH"
-          
-          ls -l ~/harmonyos-sdk/command-line-tools/bin
+          echo sdkmgr --version
           
           
