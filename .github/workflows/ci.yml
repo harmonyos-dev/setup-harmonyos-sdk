@@ -52,8 +52,6 @@ jobs:
       - name: Print Output
         id: output
         run: |
-          echo "${{ steps.test-action.outputs.sdk-path }}"
-          echo "PATH: $PATH"
           echo sdkmgr --version
-          
-          
+          export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS -Duser.country=CN"
+          sdkmgr install toolchains:9 OpenHarmony/toolchains:9 --accept-license
