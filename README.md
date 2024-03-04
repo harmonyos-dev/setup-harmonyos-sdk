@@ -5,6 +5,10 @@
 
 ## Usage
 
+This action requires java 17 or above as sdkmgr from HarmonyOS SDK requires java 17 or above.
+
+```yaml
+
 After testing, you can create version tag(s) that developers can use to
 reference different stable versions of your action. For more information, see
 [Versioning](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
@@ -22,7 +26,7 @@ steps:
 
   - name: Run my Action
     id: run-action
-    uses: uses: harmonyos-dev/setup-harmonyos-sdk@0.1.1
+    uses: harmonyos-dev/setup-harmonyos-sdk@0.2.0
     # with:
     #   version: '2.0.0.2' # 可选，不填默认是最新版本 2.0.0.2
 ```
