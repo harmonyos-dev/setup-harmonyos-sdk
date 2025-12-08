@@ -45,6 +45,6 @@
     "@babel/eslint-parser": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@vercel/ncc": "^0.38.4",
-    "prettier": "^3.7.3"
+    "prettier": "^3.7.4"
   }
 }
