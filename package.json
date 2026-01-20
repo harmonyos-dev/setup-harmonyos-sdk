@@ -41,10 +41,10 @@
     "adm-zip": "^0.5.16"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.5",
-    "@babel/eslint-parser": "^7.28.5",
-    "@babel/preset-env": "^7.28.5",
+    "@babel/core": "^7.28.6",
+    "@babel/eslint-parser": "^7.28.6",
+    "@babel/preset-env": "^7.28.6",
     "@vercel/ncc": "^0.38.4",
-    "prettier": "^3.7.4"
+    "prettier": "^3.8.0"
   }
 }
