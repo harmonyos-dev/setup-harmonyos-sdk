@@ -26,5 +26,6 @@ steps:
     id: run-action
     uses: harmonyos-dev/setup-harmonyos-sdk@0.2.0
     # with:
+    #   github-token: ${{ github.token }} # Optional, used to avoid GitHub API rate limits
     #   version: '2.0.0.2' # 可选，不填默认是最新版本 2.0.0.2
 ```
