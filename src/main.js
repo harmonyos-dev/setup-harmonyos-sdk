@@ -3,23 +3,71 @@ const os = require("node:os");
 const path = require("node:path");
 const zip = require("adm-zip");
 
-osmap = {
+const osmap = {
 	darwin: "mac",
 	linux: "linux",
 };
 
 const filenamePrefix = "commandline-tools-";
 const filenameSuffix = ".zip";
+const releaseUrl =
+	"https://api.github.com/repos/harmonyos-dev/hos-sdk/releases/latest";
 const sdkRoot = path.join(os.homedir(), "harmonyos-sdk");
 const sdkHome = path.join(sdkRoot, "command-line-tools");
 const sdkBin = path.join(sdkHome, "bin");
 
+function getGitHubHeaders(token) {
+	const headers = {
+		Accept: "application/vnd.github+json",
+		"X-GitHub-Api-Version": "2022-11-28",
+		"User-Agent": "setup-harmonyos-sdk",
+	};
+
+	if (token) {
+		headers.Authorization = `Bearer ${token}`;
+	}
+
+	return headers;
+}
+
+async function getLatestRelease(token) {
+	const response = await fetch(releaseUrl, {
+		headers: getGitHubHeaders(token),
+	});
+	const meta = await response.json().catch(() => ({}));
+
+	if (!response.ok) {
+		const message = meta.message ? `: ${meta.message}` : "";
+		throw new Error(
+			`Failed to fetch HarmonyOS SDK release metadata (${response.status} ${response.statusText})${message}`,
+		);
+	}
+
+	if (!Array.isArray(meta.assets)) {
+		throw new Error(
+			"Failed to fetch HarmonyOS SDK release metadata: response did not include assets",
+		);
+	}
+
+	return meta;
+}
+
 async function run() {
 	core.info("Downloading HarmonyOS SDK...");
 
-	const meta = await fetch(
-		"https://api.github.com/repos/harmonyos-dev/hos-sdk/releases/latest",
-	).then((res) => res.json());
+	const token = core.getInput("github-token");
+	if (token) {
+		core.setSecret(token);
+	}
+
+	let meta;
+	try {
+		meta = await getLatestRelease(token);
+	} catch (error) {
+		core.setFailed(error.message);
+		return;
+	}
+
 	const assets = meta.assets;
 	const mappedOS = osmap[os.platform()];
 	const version = core.getInput("version");

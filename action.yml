@@ -8,6 +8,10 @@ inputs:
     description: 'The version of the sdk to setup'
     required: false
     default: 2.0.0.2
+  github-token:
+    description: 'GitHub token used to fetch SDK release metadata'
+    required: false
+    default: ${{ github.token }}
 
 # Define your outputs here.
 outputs:
@@ -15,5 +19,5 @@ outputs:
     description: 'The path of installed sdk'
 
 runs:
-  using: node20
+  using: node24
   main: dist/index.js
