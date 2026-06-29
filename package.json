@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@actions/core": "^3.0.1",
-    "adm-zip": "^0.5.17"
+    "adm-zip": "^0.5.18"
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",
